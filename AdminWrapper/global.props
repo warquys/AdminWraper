@@ -1,0 +1,39 @@
+<Project>
+	<PropertyGroup>
+		<OutputPath>$(MSBuildThisFileDirectory)\bin\$(Configuration)\</OutputPath>
+	</PropertyGroup>
+
+	<Target Name="GeneratedMetaDataClass" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)GeneratedMetaDataClass.cs">
+		<PropertyGroup>
+			<AssemblyGuid Condition="'$(AssemblyGuid)' == ''">$(AssemblyName)</AssemblyGuid>
+			<AssemblyName Condition="'$(AssemblyName)' == ''">$(Product)</AssemblyName>
+			<AssemblyAuthors Condition="'$(AssemblyAuthors)' == ''">$(Authors)</AssemblyAuthors>
+			<AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(Version)</AssemblyVersion>
+			<AssemblyDescription Condition="'$(AssemblyDescription)' == ''">$(Description)</AssemblyDescription>
+
+			<GeneratedMetaDataClass>
+				<![CDATA[
+namespace $(RootNamespace)%3B
+
+internal static class AssemblyInfo
+{
+	public const string GUID = "$(AssemblyGuid)"%3B
+	public const string NAME = "$(AssemblyName)"%3B
+	public const string AUTHORS = "$(AssemblyAuthors)"%3B
+	public const string VERSION = "$(AssemblyVersion)"%3B
+	public const string DESCRIPTION = "$(AssemblyDescription)"%3B
+}
+		]]>
+			</GeneratedMetaDataClass>
+			<GeneratedFilePath>$(IntermediateOutputPath)GeneratedAssemblyInfo.cs</GeneratedFilePath>
+		</PropertyGroup>
+
+		<ItemGroup>
+			<Compile Include="$(GeneratedFilePath)" />
+			<FileWrites Include="$(GeneratedFilePath)" />
+		</ItemGroup>
+
+		<WriteLinesToFile Lines="$(GeneratedMetaDataClass)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+	</Target>
+
+</Project>
