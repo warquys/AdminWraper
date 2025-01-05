@@ -21,6 +21,4 @@ AdminWrapper --help
 
 ## Notes
 
-Please note that, I am a little too lazy to add support for other languages and that all my server has been configured in French. So my server help and my manuals are written in French. For consietency in my Os i writen the help of this project in french.
-
 You are free to compile this programmed for your use, modify it and take pieces of code, unless it is the entire class (i do not care for nasted class) you do not have the obligation to credit the source.
