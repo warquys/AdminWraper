@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using AdminWrapper.Log;
+using AdminWrapper.Logging;
 using Syml;
 
 namespace AdminWrapper.Config;

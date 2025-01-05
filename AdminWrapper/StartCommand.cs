@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using AdminWrapper.Config;
-using AdminWrapper.Log;
+using AdminWrapper.Logging;
 using Spectre.Console;
 using Spectre.Console.Cli;
 

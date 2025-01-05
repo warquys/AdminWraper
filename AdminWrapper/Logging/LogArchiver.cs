@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using AdminWrapper.Config;
 using Spectre.Console;
 
-namespace AdminWrapper.Log;
+namespace AdminWrapper.Logging;
 
 public class LogArchiver
 {
