@@ -130,7 +130,7 @@ public class SocketServer : IDisposable
             _stream = _client.GetStream();
             
             _streamReader = Task.Run(ListenRequests);
-        }, _listener);
+        }, null);
     }
 
   #region Read Stream
@@ -141,7 +141,7 @@ public class SocketServer : IDisposable
 
     private void ReadMessage(int size, ConsoleColor color)
     {
-        Span<byte> buff = stackalloc byte[size];
+        Span<byte> buff = size <= 1024 ? stackalloc byte[size] : new byte[size];
         int messageBytesRead = _stream.Read(buff);
 
         string message = Encoding.UTF8.GetString(buff);
@@ -156,7 +156,7 @@ public class SocketServer : IDisposable
     // Code     | OutputCodes
     private void ListenRequests()
     {
-        // C# byte is the equivalent of C char
+        // C# byte is the equivalent of C char, do not checker to heap alloc bc const size
         Span<byte> buff = stackalloc byte[sizeof(OutputCodes) + sizeof(int)];
         CancellationTokenSource source = _source;
 
